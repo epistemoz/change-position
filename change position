@@ -1,23 +1,20 @@
+
 from forex_python.converter import CurrencyRates
+currency = CurrencyRates()
+amount = int(input('enter the amount: '))
+From_curr =input('From Currency: ').upper()
+To_curr =input('To Currency: ').upper()
+print(From_curr , 'to' ,To_curr , amount)
+result = round(currency.convert(From_curr , To_curr ,amount))
+print('conversation Amount' ,result )
 
-
-shekels = float(input('How many shekels do you want to convert ? '))
-Currency_Type = input('For what type of currency?\nUse capital letters : USD\ERU\CAD\JPY: ')
-
-def convert(price , Currency_Type):
-    rates = {'USD': 3.1, 'CAD': 2.5, 'ERU': 3.78 ,'JPY': 2.55}
-    rate = rates[Currency_Type]
-    return price // rate
-
-Amount_after_conversion = round(convert(shekels ,Currency_Type))
-
-bill_50 , odef = Amount_after_conversion // 50 , Amount_after_conversion %50
+bill_50 , odef = result // 50 , result %50
 bill_20 , odef = odef // 20 ,odef % 20
 bill_10 , odef = odef // 10 , odef %10
 coin_5 , odef = odef // 5 , odef % 5
 coin_2 , odef = odef // 2 , odef % 2
 coin_1 = odef % 2
 
-print( f'Amount_after_conversion is: {Amount_after_conversion}) dolar\n50 bills: {bill_50} \n'
+print( f'You will receive the conversion in the following banknotes and coins: \n50 bills: {bill_50} \n'
        f'20 bills {bill_20} \n10 bills '
        f'{bill_10}\n5 coins: {coin_5}\n2 coins: {coin_2} \n1 coins:{coin_1}')
