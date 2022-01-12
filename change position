@@ -1,20 +1,26 @@
 
 from forex_python.converter import CurrencyRates
-currency = CurrencyRates()
-amount = int(input('enter the amount: '))
-From_curr =input('From Currency: ').upper()
-To_curr =input('To Currency: ').upper()
-print(From_curr , 'to' ,To_curr , amount)
-result = round(currency.convert(From_curr , To_curr ,amount))
-print('conversation Amount' ,result )
 
-bill_50 , odef = result // 50 , result %50
-bill_20 , odef = odef // 20 ,odef % 20
-bill_10 , odef = odef // 10 , odef %10
+while True:
+ try:
+    amount = int(input('enter the amount: '))
+    From_curr = input('From Currency symbol: ').upper()
+    To_curr = input('To Currency symbol: ').upper()
+    break
+ except:
+        pass
+
+currency = CurrencyRates()
+result = round(currency.convert(From_curr , To_curr ,amount))
+
+banknote_50 , odef = result // 50 , result %50
+banknote_20 , odef = odef // 20 ,odef % 20
+coin_10, odef = odef // 10 , odef %10
 coin_5 , odef = odef // 5 , odef % 5
 coin_2 , odef = odef // 2 , odef % 2
 coin_1 = odef % 2
-
-print( f'You will receive the conversion in the following banknotes and coins: \n50 bills: {bill_50} \n'
-       f'20 bills {bill_20} \n10 bills '
-       f'{bill_10}\n5 coins: {coin_5}\n2 coins: {coin_2} \n1 coins:{coin_1}')
+print('')
+print( f'The conversion amount is {result}\n'
+       f'You will receive the amount in the following banknotes and coins:\n'
+       f'50 banknote: {banknote_50} \n' f'20 banknote {banknote_20} \n10 coins '
+       f'{coin_10}\n5 coins: {coin_5}\n2 coins: {coin_2} \n1 coins:{coin_1}')
